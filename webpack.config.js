@@ -1,6 +1,8 @@
 const path = require("path");
 const TerserPlugin = require('terser-webpack-plugin'); // For minifying and removing comments
 
+// the main goal for webpack is to work with .js files
+
 module.exports = {
     optimization: {
         minimize: true,

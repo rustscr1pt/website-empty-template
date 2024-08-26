@@ -1,9 +1,9 @@
-const gulp = require('gulp'); // Set 4.0.2 version cause 5th has bug!!!!!!!
+const gulp = require('gulp'); // Set 4.0.2 version cause is not working properly in this build
 const browserSync = require('browser-sync');
 const sass = require('gulp-sass')(require('sass'));
 const cleanCSS = require('gulp-clean-css');
 const htmlmin = require('gulp-htmlmin');
-const imagemin = require('gulp-imagemin');
+const imagemin = require('gulp-imagemin'); // Use 7.1.0 version cause in higher version import like this is not allowed
 const concat = require('gulp-concat'); // For compressing all js/sass files into one
 
 gulp.task('serve', function() {
@@ -11,10 +11,10 @@ gulp.task('serve', function() {
         server: {baseDir: 'dist'}
     });
     gulp.watch("src/*.html").on('change', browserSync.reload);
-    gulp.watch("src/**/*.html").on('change', browserSync.reload); // reload on any changes in other html files.
+    gulp.watch("src/**/*.html").on('change', browserSync.reload); // reload on any changes in other html files or sass, e.t.c
 })
 
-gulp.task('styles', function() {
+gulp.task('styles', function() { // compress stylesheets into one .css file
     return gulp
         .src('src/sass/**/*.+(sass|scss|css)') // From where we import sass to compile to css.
         .pipe(sass({outputStyle : 'compressed'}).on('error', sass.logError)) // compressed output style of css + log error if it happens.
